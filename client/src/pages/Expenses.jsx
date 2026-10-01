@@ -67,37 +67,37 @@ const Expenses = () => {
       <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
         <div>
           <p className="text-sm font-medium uppercase tracking-wide text-indigo-600">Transactions</p>
-          <h1 className="mt-1 text-3xl font-bold text-slate-900">Expenses</h1>
+          <h1 className="mt-1 text-3xl font-bold text-[var(--text-primary)]">Expenses</h1>
         </div>
         <button
           onClick={() => navigate('/add-expense')}
-          className="rounded-xl bg-indigo-600 px-4 py-2.5 text-sm font-semibold text-white hover:bg-indigo-500"
+          className="rounded-xl bg-[var(--button-primary-bg)] px-4 py-2.5 text-sm font-semibold text-[var(--button-primary-text)] hover:bg-[var(--button-primary-hover)]"
         >
           + Add Expense
         </button>
       </div>
 
-      <div className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
+      <div className="rounded-2xl border border-[var(--border-subtle)] bg-[var(--bg-card)] p-4 shadow-[var(--shadow-soft)]">
         <div className="grid gap-3 md:grid-cols-5">
           <input
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             placeholder="Search title..."
-            className="rounded-xl border border-slate-200 bg-slate-50 px-3 py-2.5 text-sm focus:border-indigo-400"
+            className="rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-input)] px-3 py-2.5 text-sm text-[var(--text-primary)] focus:border-[var(--border-emphasis)]"
           />
-          <select value={category} onChange={(e) => setCategory(e.target.value)} className="rounded-xl border border-slate-200 bg-slate-50 px-3 py-2.5 text-sm focus:border-indigo-400">
+          <select value={category} onChange={(e) => setCategory(e.target.value)} className="rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-input)] px-3 py-2.5 text-sm text-[var(--text-primary)] focus:border-[var(--border-emphasis)]">
             {categories.map((item) => <option key={item} value={item}>{item}</option>)}
           </select>
-          <select value={paymentMethod} onChange={(e) => setPaymentMethod(e.target.value)} className="rounded-xl border border-slate-200 bg-slate-50 px-3 py-2.5 text-sm focus:border-indigo-400">
+          <select value={paymentMethod} onChange={(e) => setPaymentMethod(e.target.value)} className="rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-input)] px-3 py-2.5 text-sm text-[var(--text-primary)] focus:border-[var(--border-emphasis)]">
             {paymentMethods.map((item) => <option key={item} value={item}>{item}</option>)}
           </select>
-          <select value={sort} onChange={(e) => setSort(e.target.value)} className="rounded-xl border border-slate-200 bg-slate-50 px-3 py-2.5 text-sm focus:border-indigo-400">
+          <select value={sort} onChange={(e) => setSort(e.target.value)} className="rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-input)] px-3 py-2.5 text-sm text-[var(--text-primary)] focus:border-[var(--border-emphasis)]">
             <option value="date-desc">Newest</option>
             <option value="date-asc">Oldest</option>
             <option value="amount-desc">Highest Amount</option>
             <option value="amount-asc">Lowest Amount</option>
           </select>
-          <button onClick={() => { setSearch(''); setCategory('All'); setPaymentMethod('All'); setSort('date-desc'); setPage(1); }} className="rounded-xl border border-slate-200 bg-white px-3 py-2.5 text-sm font-medium text-slate-700 hover:bg-slate-50">
+          <button onClick={() => { setSearch(''); setCategory('All'); setPaymentMethod('All'); setSort('date-desc'); setPage(1); }} className="rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-surface)] px-3 py-2.5 text-sm font-medium text-[var(--text-secondary)] hover:bg-[var(--bg-surface-elevated)]">
             Reset filters
           </button>
         </div>
@@ -118,31 +118,31 @@ const Expenses = () => {
           <ExpenseTable expenses={expenses} onView={handleView} onEdit={(id) => navigate(`/edit-expense/${id}`)} onDelete={handleDelete} />
 
           <div className="flex items-center justify-between">
-            <button disabled={page === 1} onClick={() => setPage((current) => current - 1)} className="rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm disabled:cursor-not-allowed disabled:opacity-50">Previous</button>
-            <span className="text-sm text-slate-600">Page {page} of {totalPages}</span>
-            <button disabled={page >= totalPages} onClick={() => setPage((current) => current + 1)} className="rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm disabled:cursor-not-allowed disabled:opacity-50">Next</button>
+            <button disabled={page === 1} onClick={() => setPage((current) => current - 1)} className="rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-card)] px-3 py-2 text-sm text-[var(--text-secondary)] disabled:cursor-not-allowed disabled:opacity-50">Previous</button>
+            <span className="text-sm text-[var(--text-muted)]">Page {page} of {totalPages}</span>
+            <button disabled={page >= totalPages} onClick={() => setPage((current) => current + 1)} className="rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-card)] px-3 py-2 text-sm text-[var(--text-secondary)] disabled:cursor-not-allowed disabled:opacity-50">Next</button>
           </div>
         </>
       )}
 
       {selectedExpense && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/50 p-4">
-          <div className="w-full max-w-lg rounded-2xl bg-white p-6 shadow-xl">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-[var(--overlay)] p-4">
+          <div className="w-full max-w-lg rounded-2xl bg-[var(--bg-card)] p-6 shadow-[var(--shadow-soft)]">
             <div className="flex items-center justify-between">
-              <h2 className="text-xl font-bold text-slate-800">Expense Details</h2>
-              <button onClick={() => setSelectedExpense(null)} className="text-slate-500">Close</button>
+              <h2 className="text-xl font-bold text-[var(--text-primary)]">Expense Details</h2>
+              <button onClick={() => setSelectedExpense(null)} className="text-[var(--text-muted)]">Close</button>
             </div>
-            <div className="mt-5 space-y-3 text-sm text-slate-600">
-              <div className="flex justify-between"><span>Title</span><strong className="text-slate-800">{selectedExpense.title}</strong></div>
-              <div className="flex justify-between"><span>Amount</span><strong className="text-slate-800">₹{selectedExpense.amount}</strong></div>
-              <div className="flex justify-between"><span>Category</span><strong className="text-slate-800">{selectedExpense.category}</strong></div>
-              <div className="flex justify-between"><span>Date</span><strong className="text-slate-800">{new Date(selectedExpense.date).toLocaleDateString()}</strong></div>
-              <div className="flex justify-between"><span>Payment Method</span><strong className="text-slate-800">{selectedExpense.paymentMethod}</strong></div>
-              <div className="rounded-xl bg-slate-50 p-3 text-slate-700">
+            <div className="mt-5 space-y-3 text-sm text-[var(--text-secondary)]">
+              <div className="flex justify-between"><span>Title</span><strong className="text-[var(--text-primary)]">{selectedExpense.title}</strong></div>
+              <div className="flex justify-between"><span>Amount</span><strong className="text-[var(--text-primary)]">₹{selectedExpense.amount}</strong></div>
+              <div className="flex justify-between"><span>Category</span><strong className="text-[var(--text-primary)]">{selectedExpense.category}</strong></div>
+              <div className="flex justify-between"><span>Date</span><strong className="text-[var(--text-primary)]">{new Date(selectedExpense.date).toLocaleDateString()}</strong></div>
+              <div className="flex justify-between"><span>Payment Method</span><strong className="text-[var(--text-primary)]">{selectedExpense.paymentMethod}</strong></div>
+              <div className="rounded-xl bg-[var(--bg-muted)] p-3 text-[var(--text-secondary)]">
                 <p className="mb-1 font-medium">Description</p>
                 <p>{selectedExpense.description || 'No description provided.'}</p>
               </div>
-              <div className="flex justify-between"><span>Created At</span><strong className="text-slate-800">{new Date(selectedExpense.createdAt).toLocaleString()}</strong></div>
+              <div className="flex justify-between"><span>Created At</span><strong className="text-[var(--text-primary)]">{new Date(selectedExpense.createdAt).toLocaleString()}</strong></div>
             </div>
           </div>
         </div>

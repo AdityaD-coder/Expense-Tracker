@@ -39,7 +39,7 @@ const Dashboard = () => {
       <div className="flex items-center justify-between">
         <div>
           <p className="text-sm font-medium uppercase tracking-wide text-indigo-600">Overview</p>
-          <h1 className="mt-1 text-3xl font-bold text-slate-900">Dashboard</h1>
+          <h1 className="mt-1 text-3xl font-bold text-[var(--text-primary)]">Dashboard</h1>
         </div>
       </div>
 
@@ -51,22 +51,22 @@ const Dashboard = () => {
       </div>
 
       <div className="grid gap-6 xl:grid-cols-[1.3fr_0.7fr]">
-        <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+        <div className="rounded-2xl border border-[var(--border-subtle)] bg-[var(--bg-card)] p-5 shadow-[var(--shadow-soft)]">
           <div className="mb-4 flex items-center justify-between">
-            <h2 className="text-lg font-semibold text-slate-800">Recent Transactions</h2>
+            <h2 className="text-lg font-semibold text-[var(--text-primary)]">Recent Transactions</h2>
           </div>
 
           {summary.recentExpenses && summary.recentExpenses.length > 0 ? (
             <div className="space-y-3">
               {summary.recentExpenses.map((expense) => (
-                <div key={expense._id} className="flex items-center justify-between rounded-xl border border-slate-200 p-3">
+                <div key={expense._id} className="flex items-center justify-between rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-surface)] p-3">
                   <div>
-                    <p className="font-medium text-slate-800">{expense.title}</p>
-                    <p className="text-xs text-slate-500">{expense.category} • {formatDate(expense.date)}</p>
+                    <p className="font-medium text-[var(--text-primary)]">{expense.title}</p>
+                    <p className="text-xs text-[var(--text-muted)]">{expense.category} • {formatDate(expense.date)}</p>
                   </div>
                   <div className="text-right">
-                    <p className="font-semibold text-slate-800">-{formatMoney(expense.amount)}</p>
-                    <p className="text-[11px] text-slate-500">{expense.paymentMethod}</p>
+                    <p className="font-semibold text-[var(--text-primary)]">-{formatMoney(expense.amount)}</p>
+                    <p className="text-[11px] text-[var(--text-muted)]">{expense.paymentMethod}</p>
                   </div>
                 </div>
               ))}
@@ -76,8 +76,8 @@ const Dashboard = () => {
           )}
         </div>
 
-        <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
-          <h2 className="mb-4 text-lg font-semibold text-slate-800">Category Breakdown</h2>
+        <div className="rounded-2xl border border-[var(--border-subtle)] bg-[var(--bg-card)] p-5 shadow-[var(--shadow-soft)]">
+          <h2 className="mb-4 text-lg font-semibold text-[var(--text-primary)]">Category Breakdown</h2>
           <div className="h-64">
             <ResponsiveContainer width="100%" height="100%">
               <PieChart>
@@ -86,7 +86,7 @@ const Dashboard = () => {
                     <Cell key={entry.category} fill={categoryColors[entry.category] || '#64748b'} />
                   ))}
                 </Pie>
-                <Tooltip formatter={(value) => formatMoney(value)} />
+                <Tooltip formatter={(value) => formatMoney(value)} contentStyle={{ backgroundColor: 'var(--bg-card)', border: '1px solid var(--border-subtle)', borderRadius: '12px', color: 'var(--text-primary)' }} labelStyle={{ color: 'var(--text-primary)' }} />
               </PieChart>
             </ResponsiveContainer>
           </div>
@@ -95,24 +95,24 @@ const Dashboard = () => {
               <div key={item.category} className="flex items-center justify-between text-sm">
                 <div className="flex items-center gap-2">
                   <span className="h-2.5 w-2.5 rounded-full" style={{ backgroundColor: categoryColors[item.category] || '#64748b' }} />
-                  <span className="text-slate-600">{item.category}</span>
+                  <span className="text-[var(--text-secondary)]">{item.category}</span>
                 </div>
-                <span className="font-medium text-slate-700">{item.percentage}%</span>
+                <span className="font-medium text-[var(--text-primary)]">{item.percentage}%</span>
               </div>
             ))}
           </div>
         </div>
       </div>
 
-      <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
-        <h2 className="mb-4 text-lg font-semibold text-slate-800">Monthly Expense Summary</h2>
+      <div className="rounded-2xl border border-[var(--border-subtle)] bg-[var(--bg-card)] p-5 shadow-[var(--shadow-soft)]">
+        <h2 className="mb-4 text-lg font-semibold text-[var(--text-primary)]">Monthly Expense Summary</h2>
         <div className="h-72">
           <ResponsiveContainer width="100%" height="100%">
             <BarChart data={summary.monthlyBreakdown}>
-              <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" />
-              <XAxis dataKey="month" stroke="#64748b" />
-              <YAxis stroke="#64748b" />
-              <Tooltip formatter={(value) => formatMoney(value)} />
+              <CartesianGrid strokeDasharray="3 3" stroke="var(--chart-grid)" />
+              <XAxis dataKey="month" stroke="var(--chart-text)" tick={{ fill: 'var(--chart-text)' }} />
+              <YAxis stroke="var(--chart-text)" tick={{ fill: 'var(--chart-text)' }} />
+              <Tooltip formatter={(value) => formatMoney(value)} contentStyle={{ backgroundColor: 'var(--bg-card)', border: '1px solid var(--border-subtle)', borderRadius: '12px', color: 'var(--text-primary)' }} labelStyle={{ color: 'var(--text-primary)' }} />
               <Bar dataKey="total" fill="#4f46e5" radius={[8, 8, 0, 0]} />
             </BarChart>
           </ResponsiveContainer>

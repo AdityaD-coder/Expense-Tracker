@@ -13,7 +13,7 @@ const Sidebar = ({ mobileOpen, onClose }) => {
   return (
     <>
       <aside
-        className={`fixed inset-y-0 left-0 z-40 w-64 transform border-r border-slate-200 bg-slate-900 text-slate-100 transition duration-200 md:static md:translate-x-0 ${
+        className={`fixed inset-y-0 left-0 z-40 w-64 transform border-r border-[var(--border-subtle)] bg-[var(--sidebar-bg)] text-[var(--sidebar-text)] shadow-lg transition duration-200 md:static md:translate-x-0 ${
           mobileOpen ? 'translate-x-0' : '-translate-x-full'
         }`}
       >
@@ -21,11 +21,11 @@ const Sidebar = ({ mobileOpen, onClose }) => {
           <div className="mb-8 flex items-center justify-between">
             <div>
               <p className="text-xl font-bold">ExpenseTrack</p>
-              <p className="text-xs text-slate-400">Financial overview</p>
+              <p className="text-xs text-[var(--sidebar-text-muted)]">Financial overview</p>
             </div>
             <button
               type="button"
-              className="rounded-lg border border-slate-700 px-2 py-1 text-xs text-slate-300 md:hidden"
+              className="rounded-lg border border-[var(--sidebar-border)] px-2 py-1 text-xs text-[var(--sidebar-text-muted)] md:hidden"
               onClick={onClose}
             >
               Close
@@ -41,8 +41,8 @@ const Sidebar = ({ mobileOpen, onClose }) => {
                 className={({ isActive }) =>
                   `flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition ${
                     isActive
-                      ? 'bg-indigo-600 text-white shadow-sm'
-                      : 'text-slate-300 hover:bg-slate-800 hover:text-white'
+                      ? 'bg-[var(--sidebar-active-bg)] text-[var(--sidebar-active-text)] shadow-sm'
+                      : 'text-[var(--sidebar-text-muted)] hover:bg-[var(--sidebar-hover-bg)] hover:text-[var(--sidebar-text)]'
                   }`
                 }
               >
@@ -54,7 +54,7 @@ const Sidebar = ({ mobileOpen, onClose }) => {
         </div>
       </aside>
 
-      {mobileOpen && <button type="button" onClick={onClose} className="fixed inset-0 z-30 bg-slate-950/40 md:hidden" aria-label="Close menu" />}
+      {mobileOpen && <button type="button" onClick={onClose} className="fixed inset-0 z-30 bg-[var(--backdrop)] md:hidden" aria-label="Close menu" />}
     </>
   );
 };

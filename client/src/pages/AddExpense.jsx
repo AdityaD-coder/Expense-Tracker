@@ -31,10 +31,10 @@ const AddExpense = () => {
     <div className="space-y-6 p-4 md:p-6">
       <div>
         <p className="text-sm font-medium uppercase tracking-wide text-indigo-600">Manage</p>
-        <h1 className="mt-1 text-3xl font-bold text-slate-900">Add Expense</h1>
+        <h1 className="mt-1 text-3xl font-bold text-[var(--text-primary)]">Add Expense</h1>
       </div>
 
-      {error && <p className="rounded-xl bg-rose-50 px-3 py-2 text-sm text-rose-600">{error}</p>}
+      {error && <p className="rounded-xl bg-[var(--error-bg)] px-3 py-2 text-sm text-[var(--error-text)]">{error}</p>}
 
       <ExpenseForm onSubmit={handleSubmit} submitLabel="Add Expense" isSubmitting={submitting} />
     </div>

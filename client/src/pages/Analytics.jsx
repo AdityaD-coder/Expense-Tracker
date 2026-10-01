@@ -35,12 +35,12 @@ const Analytics = () => {
     <div className="space-y-6 p-4 md:p-6">
       <div>
         <p className="text-sm font-medium uppercase tracking-wide text-indigo-600">Insights</p>
-        <h1 className="mt-1 text-3xl font-bold text-slate-900">Analytics</h1>
+        <h1 className="mt-1 text-3xl font-bold text-[var(--text-primary)]">Analytics</h1>
       </div>
 
       <div className="grid gap-6 xl:grid-cols-2">
-        <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
-          <h2 className="mb-4 text-lg font-semibold text-slate-800">Category Distribution</h2>
+        <div className="rounded-2xl border border-[var(--border-subtle)] bg-[var(--bg-card)] p-5 shadow-[var(--shadow-soft)]">
+          <h2 className="mb-4 text-lg font-semibold text-[var(--text-primary)]">Category Distribution</h2>
           <div className="h-72">
             <ResponsiveContainer width="100%" height="100%">
               <PieChart>
@@ -49,7 +49,7 @@ const Analytics = () => {
                     <Cell key={entry.category} fill={categoryColors[entry.category] || '#64748b'} />
                   ))}
                 </Pie>
-                <Tooltip formatter={(value) => formatMoney(value)} />
+                <Tooltip formatter={(value) => formatMoney(value)} contentStyle={{ backgroundColor: 'var(--bg-card)', border: '1px solid var(--border-subtle)', borderRadius: '12px', color: 'var(--text-primary)' }} labelStyle={{ color: 'var(--text-primary)' }} />
               </PieChart>
             </ResponsiveContainer>
           </div>
@@ -58,23 +58,23 @@ const Analytics = () => {
               <div key={item.category} className="flex items-center justify-between text-sm">
                 <div className="flex items-center gap-2">
                   <span className="h-2.5 w-2.5 rounded-full" style={{ backgroundColor: categoryColors[item.category] || '#64748b' }} />
-                  <span className="text-slate-600">{item.category}</span>
+                  <span className="text-[var(--text-secondary)]">{item.category}</span>
                 </div>
-                <span className="font-medium text-slate-700">{item.percentage}%</span>
+                <span className="font-medium text-[var(--text-primary)]">{item.percentage}%</span>
               </div>
             ))}
           </div>
         </div>
 
-        <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
-          <h2 className="mb-4 text-lg font-semibold text-slate-800">Monthly Expenses</h2>
+        <div className="rounded-2xl border border-[var(--border-subtle)] bg-[var(--bg-card)] p-5 shadow-[var(--shadow-soft)]">
+          <h2 className="mb-4 text-lg font-semibold text-[var(--text-primary)]">Monthly Expenses</h2>
           <div className="h-72">
             <ResponsiveContainer width="100%" height="100%">
               <BarChart data={summary.monthlyBreakdown}>
-                <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" />
-                <XAxis dataKey="month" stroke="#64748b" />
-                <YAxis stroke="#64748b" />
-                <Tooltip formatter={(value) => formatMoney(value)} />
+                <CartesianGrid strokeDasharray="3 3" stroke="var(--chart-grid)" />
+                <XAxis dataKey="month" stroke="var(--chart-text)" tick={{ fill: 'var(--chart-text)' }} />
+                <YAxis stroke="var(--chart-text)" tick={{ fill: 'var(--chart-text)' }} />
+                <Tooltip formatter={(value) => formatMoney(value)} contentStyle={{ backgroundColor: 'var(--bg-card)', border: '1px solid var(--border-subtle)', borderRadius: '12px', color: 'var(--text-primary)' }} labelStyle={{ color: 'var(--text-primary)' }} />
                 <Bar dataKey="total" fill="#10b981" radius={[8, 8, 0, 0]} />
               </BarChart>
             </ResponsiveContainer>

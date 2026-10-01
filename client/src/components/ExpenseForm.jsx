@@ -39,22 +39,22 @@ const ExpenseForm = ({ initialData, onSubmit, submitLabel = 'Save Expense', isSu
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-5 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+    <form onSubmit={handleSubmit} className="space-y-5 rounded-2xl border border-[var(--border-subtle)] bg-[var(--bg-card)] p-6 shadow-[var(--shadow-soft)]">
       <div className="grid gap-5 md:grid-cols-2">
         <div className="md:col-span-2">
-          <label className="mb-2 block text-sm font-medium text-slate-700">Title</label>
+          <label className="mb-2 block text-sm font-medium text-[var(--text-secondary)]">Title</label>
           <input
             name="title"
             value={formData.title}
             onChange={handleChange}
             placeholder="Groceries for the week"
-            className="w-full rounded-xl border border-slate-200 bg-slate-50 px-3 py-2.5 text-sm text-slate-800 outline-none transition focus:border-indigo-400 focus:bg-white"
+            className="w-full rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-input)] px-3 py-2.5 text-sm text-[var(--text-primary)] outline-none transition focus:border-[var(--border-emphasis)]"
             required
           />
         </div>
 
         <div>
-          <label className="mb-2 block text-sm font-medium text-slate-700">Amount</label>
+          <label className="mb-2 block text-sm font-medium text-[var(--text-secondary)]">Amount</label>
           <input
             type="number"
             name="amount"
@@ -63,18 +63,18 @@ const ExpenseForm = ({ initialData, onSubmit, submitLabel = 'Save Expense', isSu
             value={formData.amount}
             onChange={handleChange}
             placeholder="450"
-            className="w-full rounded-xl border border-slate-200 bg-slate-50 px-3 py-2.5 text-sm text-slate-800 outline-none transition focus:border-indigo-400 focus:bg-white"
+            className="w-full rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-input)] px-3 py-2.5 text-sm text-[var(--text-primary)] outline-none transition focus:border-[var(--border-emphasis)]"
             required
           />
         </div>
 
         <div>
-          <label className="mb-2 block text-sm font-medium text-slate-700">Category</label>
+          <label className="mb-2 block text-sm font-medium text-[var(--text-secondary)]">Category</label>
           <select
             name="category"
             value={formData.category}
             onChange={handleChange}
-            className="w-full rounded-xl border border-slate-200 bg-slate-50 px-3 py-2.5 text-sm text-slate-800 outline-none transition focus:border-indigo-400 focus:bg-white"
+            className="w-full rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-input)] px-3 py-2.5 text-sm text-[var(--text-primary)] outline-none transition focus:border-[var(--border-emphasis)]"
             required
           >
             {categories.map((category) => (
@@ -86,24 +86,24 @@ const ExpenseForm = ({ initialData, onSubmit, submitLabel = 'Save Expense', isSu
         </div>
 
         <div>
-          <label className="mb-2 block text-sm font-medium text-slate-700">Date</label>
+          <label className="mb-2 block text-sm font-medium text-[var(--text-secondary)]">Date</label>
           <input
             type="date"
             name="date"
             value={formData.date}
             onChange={handleChange}
-            className="w-full rounded-xl border border-slate-200 bg-slate-50 px-3 py-2.5 text-sm text-slate-800 outline-none transition focus:border-indigo-400 focus:bg-white"
+            className="w-full rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-input)] px-3 py-2.5 text-sm text-[var(--text-primary)] outline-none transition focus:border-[var(--border-emphasis)]"
             required
           />
         </div>
 
         <div>
-          <label className="mb-2 block text-sm font-medium text-slate-700">Payment Method</label>
+          <label className="mb-2 block text-sm font-medium text-[var(--text-secondary)]">Payment Method</label>
           <select
             name="paymentMethod"
             value={formData.paymentMethod}
             onChange={handleChange}
-            className="w-full rounded-xl border border-slate-200 bg-slate-50 px-3 py-2.5 text-sm text-slate-800 outline-none transition focus:border-indigo-400 focus:bg-white"
+            className="w-full rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-input)] px-3 py-2.5 text-sm text-[var(--text-primary)] outline-none transition focus:border-[var(--border-emphasis)]"
             required
           >
             {paymentMethods.map((method) => (
@@ -115,14 +115,14 @@ const ExpenseForm = ({ initialData, onSubmit, submitLabel = 'Save Expense', isSu
         </div>
 
         <div className="md:col-span-2">
-          <label className="mb-2 block text-sm font-medium text-slate-700">Description</label>
+          <label className="mb-2 block text-sm font-medium text-[var(--text-secondary)]">Description</label>
           <textarea
             name="description"
             rows="4"
             value={formData.description}
             onChange={handleChange}
             placeholder="Optional notes about this expense"
-            className="w-full rounded-xl border border-slate-200 bg-slate-50 px-3 py-2.5 text-sm text-slate-800 outline-none transition focus:border-indigo-400 focus:bg-white"
+            className="w-full rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-input)] px-3 py-2.5 text-sm text-[var(--text-primary)] outline-none transition focus:border-[var(--border-emphasis)]"
           />
         </div>
       </div>
@@ -131,7 +131,7 @@ const ExpenseForm = ({ initialData, onSubmit, submitLabel = 'Save Expense', isSu
         <button
           type="submit"
           disabled={isSubmitting}
-          className="rounded-xl bg-indigo-600 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-indigo-500 disabled:cursor-not-allowed disabled:bg-indigo-400"
+          className="rounded-xl bg-[var(--button-primary-bg)] px-5 py-2.5 text-sm font-semibold text-[var(--button-primary-text)] transition hover:bg-[var(--button-primary-hover)] disabled:cursor-not-allowed disabled:opacity-70"
         >
           {isSubmitting ? 'Saving...' : submitLabel}
         </button>

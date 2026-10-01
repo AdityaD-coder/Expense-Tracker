@@ -1,11 +1,113 @@
 @import 'tailwindcss';
 
 :root {
+  --bg-page: #f8fafc;
+  --bg-surface: #ffffff;
+  --bg-surface-elevated: #f8fafc;
+  --bg-header: rgba(255, 255, 255, 0.9);
+  --bg-muted: #f1f5f9;
+  --bg-card: #ffffff;
+  --bg-input: #f8fafc;
+  --text-primary: #0f172a;
+  --text-secondary: #334155;
+  --text-muted: #64748b;
+  --text-subtle: #475569;
+  --border-subtle: #e2e8f0;
+  --border-strong: #cbd5e1;
+  --border-emphasis: #a5b4fc;
+  --shadow-soft: 0 10px 30px rgba(15, 23, 42, 0.08);
+  --focus-ring: rgba(79, 70, 229, 0.35);
+  --backdrop: rgba(2, 6, 23, 0.45);
+  --sidebar-bg: #0f172a;
+  --sidebar-text: #f8fafc;
+  --sidebar-text-muted: #cbd5e1;
+  --sidebar-hover-bg: #1e293b;
+  --sidebar-active-bg: #4f46e5;
+  --sidebar-active-text: #ffffff;
+  --sidebar-border: #334155;
+  --chart-grid: #e2e8f0;
+  --chart-text: #64748b;
+  --success-bg: #ecfdf5;
+  --success-text: #047857;
+  --success-border: #a7f3d0;
+  --error-bg: #fef2f2;
+  --error-text: #b91c1c;
+  --error-border: #fecaca;
+  --info-bg: #eef2ff;
+  --info-text: #4338ca;
+  --info-border: #c7d2fe;
+  --button-primary-bg: #4f46e5;
+  --button-primary-hover: #4338ca;
+  --button-primary-text: #ffffff;
+  --button-secondary-bg: #ffffff;
+  --button-secondary-hover: #f8fafc;
+  --button-secondary-text: #334155;
+  --tag-bg: #eef2ff;
+  --tag-text: #4338ca;
+  --avatar-bg: #f1f5f9;
+  --empty-border: #e2e8f0;
+  --loading-border: #cbd5e1;
+  --loading-accent: #4f46e5;
+  --overlay: rgba(15, 23, 42, 0.45);
+}
+
+:root[data-theme='dark'] {
+  --bg-page: #020817;
+  --bg-surface: #0f172a;
+  --bg-surface-elevated: #111827;
+  --bg-header: rgba(15, 23, 42, 0.8);
+  --bg-muted: #111827;
+  --bg-card: #111827;
+  --bg-input: #0f172a;
+  --text-primary: #e2e8f0;
+  --text-secondary: #cbd5e1;
+  --text-muted: #94a3b8;
+  --text-subtle: #cbd5e1;
+  --border-subtle: #1e293b;
+  --border-strong: #334155;
+  --border-emphasis: #818cf8;
+  --shadow-soft: 0 10px 30px rgba(2, 6, 23, 0.45);
+  --focus-ring: rgba(129, 140, 248, 0.45);
+  --backdrop: rgba(2, 6, 23, 0.72);
+  --sidebar-bg: #0b1120;
+  --sidebar-text: #e2e8f0;
+  --sidebar-text-muted: #94a3b8;
+  --sidebar-hover-bg: #111827;
+  --sidebar-active-bg: #6366f1;
+  --sidebar-active-text: #f8fafc;
+  --sidebar-border: #1e293b;
+  --chart-grid: #334155;
+  --chart-text: #94a3b8;
+  --success-bg: rgba(16, 185, 129, 0.12);
+  --success-text: #6ee7b7;
+  --success-border: rgba(52, 211, 153, 0.35);
+  --error-bg: rgba(239, 68, 68, 0.12);
+  --error-text: #fca5a5;
+  --error-border: rgba(248, 113, 113, 0.45);
+  --info-bg: rgba(99, 102, 241, 0.14);
+  --info-text: #a5b4fc;
+  --info-border: rgba(129, 140, 248, 0.35);
+  --button-primary-bg: #6366f1;
+  --button-primary-hover: #818cf8;
+  --button-primary-text: #f8fafc;
+  --button-secondary-bg: #111827;
+  --button-secondary-hover: #0f172a;
+  --button-secondary-text: #e2e8f0;
+  --tag-bg: rgba(99, 102, 241, 0.18);
+  --tag-text: #c7d2fe;
+  --avatar-bg: #111827;
+  --empty-border: #334155;
+  --loading-border: #334155;
+  --loading-accent: #818cf8;
+  --overlay: rgba(15, 23, 42, 0.7);
+}
+
+:root {
   font-family: 'Inter', 'Segoe UI', sans-serif;
   line-height: 1.5;
   font-weight: 400;
-  color: #0f172a;
-  background-color: #f8fafc;
+  color: var(--text-primary);
+  background-color: var(--bg-page);
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -20,7 +122,8 @@ body {
   margin: 0;
   min-width: 320px;
   min-height: 100vh;
-  background: #f8fafc;
+  background: var(--bg-page);
+  color: var(--text-primary);
 }
 
 * {
@@ -34,8 +137,20 @@ textarea {
   font: inherit;
 }
 
+button,
+input,
+select,
+textarea,
+[role='button'] {
+  transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+}
+
 #root {
   min-height: 100vh;
+}
+
+::selection {
+  background: rgba(99, 102, 241, 0.35);
 }
 
 ::-webkit-scrollbar {
@@ -44,6 +159,29 @@ textarea {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #cbd5e1;
+  background: var(--border-strong);
   border-radius: 9999px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-muted);
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: var(--text-muted);
+}
+
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+a:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px var(--focus-ring);
+}
+
+.app-shell,
+.app-shell * {
+  border-color: var(--border-subtle);
 }

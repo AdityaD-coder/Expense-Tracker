@@ -12,10 +12,10 @@ const ToastContainer = ({ toasts }) => {
           key={toast.id}
           className={`rounded-xl border px-4 py-3 text-sm shadow-lg ${
             toast.type === 'success'
-              ? 'border-emerald-200 bg-emerald-50 text-emerald-700'
+              ? 'border-[var(--success-border)] bg-[var(--success-bg)] text-[var(--success-text)]'
               : toast.type === 'error'
-                ? 'border-rose-200 bg-rose-50 text-rose-700'
-                : 'border-indigo-200 bg-indigo-50 text-indigo-700'
+                ? 'border-[var(--error-border)] bg-[var(--error-bg)] text-[var(--error-text)]'
+                : 'border-[var(--info-border)] bg-[var(--info-bg)] text-[var(--info-text)]'
           }`}
         >
           {toast.message}

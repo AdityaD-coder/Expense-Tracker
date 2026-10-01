@@ -3,6 +3,7 @@ import { useState } from 'react';
 import Navbar from './components/Navbar';
 import Sidebar from './components/Sidebar';
 import { AuthProvider, useAuth } from './context/AuthContext';
+import { ThemeProvider } from './context/ThemeContext';
 import { ToastProvider } from './context/ToastContext';
 import Loading from './components/Loading';
 import Login from './pages/Login';
@@ -39,7 +40,7 @@ const AppLayout = () => {
   };
 
   return (
-    <div className="min-h-screen bg-slate-100 text-slate-800">
+    <div className="app-shell min-h-screen bg-[var(--bg-page)] text-[var(--text-primary)]">
       <Navbar
         user={user}
         onLogout={handleLogout}
@@ -87,11 +88,13 @@ const App = () => {
 };
 
 const RootApp = () => (
-  <ToastProvider>
-    <AuthProvider>
-      <App />
-    </AuthProvider>
-  </ToastProvider>
+  <ThemeProvider>
+    <ToastProvider>
+      <AuthProvider>
+        <App />
+      </AuthProvider>
+    </ToastProvider>
+  </ThemeProvider>
 );
 
 export default RootApp;
